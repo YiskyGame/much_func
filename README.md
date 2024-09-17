@@ -1,11 +1,9 @@
 # much_func
 much_func，最初的名字叫作much function，意为更多函数。
 
-这是一个头文件，完全使用C++编写。
-
 它完全因为编程中麻烦的内容太多，而C++可以函数式编程，所以诞生了它，而且语言是C++。
 
-它分为三(v4.0-Pre后改为四)部分：
+它分为三(v4.0-Pre后会改为四)部分：
 
 + much_func.h：此头文件主要存放各种函数(v4.0-Pre之前包含a_to_b变种)，以及导入iofunc.h、bignum.h与v4.0-Pre版本后的func_atob.h。
 + iofunc.h：此头文件为存放各种输入输出函数，使用C++流来编写。
