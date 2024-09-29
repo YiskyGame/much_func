@@ -2,6 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <algorithm>
+// #include <string>
 namespace much{
 	class bignum {
 	private:
@@ -11,7 +12,7 @@ namespace much{
 		bignum() { memset(s, 0, sizeof(s)); len = 1; }
 		bignum(int num) { *this = num; }
 		bignum(const char* num) { *this = num; }
-		
+
 		bignum operator = (int num) {
 			char str[500];
 			sprintf(str, "%d", num);
@@ -23,18 +24,18 @@ namespace much{
 			for (int i = 0; i < len; i++) s[i] = num[len - i - 1] - '0';
 			return *this;
 		}
-		
+
 		std::string to_str() const {
 			std::string res = "";
 			for (int i = 0; i < len; i++) res = (char)(s[i] + '0') + res;
 			if (res == "") res = "0";
 			return res;
 		}
-		
+
 		int operator [](const int& i) {
 			return s[len - 1 - i];
 		}
-		
+
 		bignum operator +(const bignum& b) const {
 			bignum c;
 			c.len = 0;
@@ -76,7 +77,7 @@ namespace much{
 			c.clean();
 			return c;
 		}
-		
+
 		bool operator <(const bignum& b) const {
 			if (len != b.len) return len < b.len;
 			for (int i = len - 1; i >= 0; i--)
@@ -84,35 +85,35 @@ namespace much{
 			return false;
 		}
 		bool operator >(const bignum& b) const { return b < *this; }
-		
+
 		bool operator <=(const bignum& b) { return !(b > *this); }
 		bool operator >=(const bignum& b) { return !(b < *this); }
 		bool operator ==(const bignum& b) { return !(b < *this) && !(*this < b); }
-		
+
 		bignum operator +=(const bignum& b) { *this = *this + b; return *this; }
 		bignum operator -=(const bignum& b) { *this = *this - b; return *this; }
 		bignum operator *=(const bignum& b) { *this = *this * b; return *this; }
 	};
-	
+
 	std::istream& operator >> (std::istream& instr, bignum& x) {
 		std::string s;
 		instr >> s;
 		x = s.c_str();
 		return instr;
 	}
-	
+
 	std::ostream& operator << (std::ostream& outstr, const bignum& x) {
 		outstr << x.to_str();
 		return outstr;
 	}
-	
+
 	bignum big_fac(int num = 0) {
 		bignum facn(1);
-		for (int i = 2; i <= num; i++) 
+		for (int i = 2; i <= num; i++)
 			facn *= bignum(i);
 		return facn;
 	}
-	
+
 	bignum big_pow(int n, int m = 0) {
 		if (m == 0) return 1;
 		bignum pown(1);
